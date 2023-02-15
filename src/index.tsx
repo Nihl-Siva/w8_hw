@@ -11,7 +11,7 @@ ReactDOM.render(
 
       <Router>
         <Routes>
-          <Route path='/' element={<Home title  ={'Drones Inventory'}/>} />
+          <Route path='/' element={<Home title  ={'Car Inventory'}/>} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/signin' element={<SignIn />} />
         </Routes>
