@@ -1,9 +1,9 @@
-let token = `YOUR-API-TOKEN-HERE`
+let token = `c7556cbf621d0d251a7b008917262bae09b97b176a87b158`
 
 export const serverCalls = {
     
     get: async () => {
-        const response = await fetch(`YOUR-URL-HERE`,{
+        const response = await fetch(`https://fringe-bold-router.glitch.me/api/cars`,{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -19,7 +19,7 @@ export const serverCalls = {
     },
 
     create: async(data: any = {}) => {
-        const response = await fetch(`YOUR-URL-HERE`,{
+        const response = await fetch(`https://fringe-bold-router.glitch.me/api/cars`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ export const serverCalls = {
     },
 
     update: async (id:string, data:any = {}) => {
-        const response = await fetch(`YOUR-URL-HERE/${id}`, {
+        const response = await fetch(`https://fringe-bold-router.glitch.me/api/cars/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -47,7 +47,7 @@ export const serverCalls = {
     },
 
     delete: async(id:string) => {
-        const response = await fetch(`YOUR-URL-HERE/${id}`,{
+        const response = await fetch(`https://fringe-bold-router.glitch.me/api/cars/${id}`,{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

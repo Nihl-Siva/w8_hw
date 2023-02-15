@@ -1,25 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import { Home, Dashboard, SignIn } from './components';
+import { theme } from './Theme/themes';
 import './styles.css'
 import reportWebVitals from './reportWebVitals';
 
+const root = ReactDOM.createRoot(
+  document.getElementById('root')as HTMLElement
+)
 
-ReactDOM.render(
+root.render(
   <React.StrictMode>
-
-      <Router>
-        <Routes>
-          <Route path='/' element={<Home title  ={'Car Inventory'}/>} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/signin' element={<SignIn />} />
-        </Routes>
-      </Router>
-
-    
+    <Provider store = {store}>   
+        <ThemeProvider theme={theme}>
+          <Router>
+            <Routes>
+              <Route path='/' element={<Home title  = {'Car Inventory'}/>} />
+              <Route path='/dashboard' element={<Dashboard />} />
+              <Route path='/signin' element={<SignIn />} />
+            </Routes>
+          </Router>
+        </ThemeProvider>
+    </Provider>                  
   </React.StrictMode>,
-  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
