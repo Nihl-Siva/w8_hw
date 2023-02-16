@@ -4,10 +4,12 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import car_image from '../../assets/images/car_img.png';
 
+
 interface Props{
     title: string;
 }
 
+// Create Styled Components with styled-components
 const Root = styled("div")({
     padding: 0,
     margin: 0
@@ -62,31 +64,41 @@ const MainText = styled('div')({
     color: 'white'
 })
 
-export const Home = ( props:Props) => {
- 
+
+
+
+
+export const Home = (props: Props) => {    
     return (
+
         <Root>
             <NavbarContainer>
                 <Logo>
                     <LogoA href="#">Brand</LogoA>
                 </Logo>
                 <LogoNavigation>
-                <li>
+
+                    <li>
                         <NavA to="/">Home</NavA>
                     </li>
                     <li>
                         <NavA to="/dashboard">Dashboard</NavA>
                     </li>
                     <li>
-                        <NavA to="/signin">Learn More</NavA>
+                        <NavA to="/signin">Sign In</NavA>
+                    </li>
+                    <li>
+                        <NavA to="/signup">Sign Up</NavA>
                     </li>
                 </LogoNavigation>
             </NavbarContainer>
+
+
             <Main>
                 <MainText>
                     <h1>{props.title}</h1>
-                    <p> Drifting is dope.</p>
-                    <Button color='primary' variant='contained' component={Link} to='/dashboard'>See the Cars</Button>
+                    <p>Drifting is dope...</p>
+                    <Button color='warning' variant='contained' component={Link} to='/dashboard'>See The Cars</Button>
                 </MainText>
             </Main>
 

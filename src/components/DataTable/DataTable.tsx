@@ -12,6 +12,7 @@ import {
   DialogTitle 
 } from '@mui/material'; 
 import { CarForm } from '../../components/CarForm';
+import { getAuth } from 'firebase/auth';
 
 interface gridData{
   data:{
@@ -69,39 +70,43 @@ export const DataTable = () => {
     getData()
   }
 
-  console.log(gridData)
-  return (
-    <Box sx={{ height: 400, width: '100%' }}>
-      <h2>Cars In Inventory</h2>
-      <DataGrid
-        rows={carData}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        checkboxSelection
-        onSelectionModelChange = {(newSelectionModel) => {setData(newSelectionModel);}}
-        {...carData}  
-      />
+  console.log(gridData) 
+  const MyAuth = localStorage.getItem('myAuth');
+  console.log(MyAuth);
 
-        <Button onClick={handleOpen}>Update</Button>
-        <Button variant="contained" color="secondary" onClick={deleteData}>Delete</Button>
-        {/*Dialog Pop Up begin */}
-        <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-          <DialogTitle id="form-dialog-title">Update A Car</DialogTitle>
-          <DialogContent>
-            <DialogContentText>Car id: {gridData[0]}</DialogContentText>
-              <CarForm id={`${gridData[0]}`}/>
-          </DialogContent>
-          <DialogActions>
-            <Button onClick = {handleClose} color="primary">Cancel</Button>
-            <Button onClick={handleClose} color = "primary">Done</Button> 
-          </DialogActions>
-        </Dialog>
+  if (MyAuth == 'true'){
+  return ( 
+      <div style={{ height: 600, width: '100%' }}>
+          <h2>Cars In Our Collection</h2>
+          <DataGrid
+              rows={carData}
+              columns={columns}
+              pageSize={9}
+              rowsPerPageOptions={[9]}
+              checkboxSelection
+              onSelectionModelChange={(newSelectionModel) => { setData(newSelectionModel); }}
+              {...carData}
+          />
+          <Button onClick={handleOpen}>Update</Button>
+          <Button variant="contained" color="secondary" onClick={deleteData}>Delete</Button>
+          <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+              <DialogTitle id="form-dialog-title">Update Car</DialogTitle>
+              <DialogContent>
+                  <DialogContentText>Car id: {gridData[0]}</DialogContentText>
+                  <CarForm id={`${gridData[0]}`} />
+              </DialogContent>
+              <DialogActions>
+                  <Button onClick={handleClose} color="primary">Cancel</Button>
+                  <Button onClick={handleClose} color="secondary">Done</Button>
+              </DialogActions>
+          </Dialog>
+      </div>
+  )
+} else { 
+  return(
+  <div>
+      <h3>Please Sign In to View Your Car Collection</h3>
+  </div>
+)};
 
-    </Box>
-  );
 }
-
-
-
-
